@@ -1,0 +1,6 @@
+/**
+ * Created by qianqing on 2017/3/14.
+ */
+export const UPDATELOADINGSTATUS = 'UPDATE_LOADING_STATUS';
+export const UPDATEDIRECTION = 'UPDATE_DIRECTION';
+export const UPDATEDEMOPOSITION = 'UPDATE_DEMO_POSITION';

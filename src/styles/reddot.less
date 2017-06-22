@@ -1,0 +1,38 @@
+.m-reddot,.m-reddot-border,.m-reddot-s {
+  position: relative;
+}
+
+.m-reddot:after,.m-reddot-border:after,.m-reddot-s:after {
+  content: '';
+  position: absolute;
+  display: block;
+  width: .11rem;
+  height: .11rem;
+  background-color: #f74c31;
+  border-radius: 100%;
+  right: -3px;
+  top: .1rem;
+  overflow: hidden;
+  background-clip: padding-box;
+}
+
+.m-reddot-border:before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 5px;
+  right: -4px;
+  top: -4px;
+  background-clip: padding-box;
+  padding: 1px;
+}
+
+.m-reddot-s:after {
+  width: 6px;
+  height: 6px;
+  top: -5px;
+  right: -5px;
+}

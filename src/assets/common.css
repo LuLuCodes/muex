@@ -1,0 +1,687 @@
+/*------------------------------------全局样式定义------------------------------------------*/
+.m-h100 {
+  min-height: 100%;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+/*图片自适应*/
+.m-img-auto img {
+  width: 100%;
+  height: auto;
+}
+/*padding间距定义*/
+.m-pad-24 {
+  padding: 0.24rem;
+}
+.m-pad-24-b {
+  padding: 0.2rem 0.24rem;
+}
+.m-pad-t24 {
+  padding-top: 0.24rem;
+}
+.m-pad-b78 {
+  padding-bottom: .78rem;
+}
+.m-pad-tb24 {
+  padding: 0.24rem 0;
+}
+.m-pad-t10 {
+  padding-top: .1rem;
+}
+/*左右浮动定义*/
+.m-pull-left {
+  display: inline;
+  float: left;
+}
+.m-pull-right {
+  display: inline;
+  float: right;
+}
+/*清除浮动定义*/
+.m-clearfix:before,
+.m-clearfix:after {
+  content: " ";
+  display: table;
+}
+.m-clearfix:after {
+  clear: both;
+}
+/*字体大小定义*/
+.m-18-text {
+  font-size: .18rem !important;
+}
+.m-20-text {
+  font-size: .20rem !important;
+}
+.m-22-text {
+  font-size: .22rem !important;
+}
+.m-24-text {
+  font-size: .24rem !important;
+}
+.m-25-text {
+  font-size: .25rem !important;
+}
+.m-26-text {
+  font-size: .26rem !important;
+}
+.m-28-text {
+  font-size: .28rem !important;
+}
+.m-36-text {
+  font-size: .36rem !important;
+}
+/*字体颜色定义*/
+.m-color-text {
+  color: #ffba00;
+}
+.m-gray-text {
+  color: #999;
+}
+.m-orange-text {
+  color: #fc6800;
+}
+.m-red-text {
+  color: #ff0000;
+}
+.m-color-normal {
+  color: #333;
+}
+/*字体样式定义*/
+.m-line-cross {
+  text-decoration: line-through;
+}
+.m-right-text {
+  text-align: right;
+}
+.m-center-text {
+  text-align: center;
+}
+.m-left-text {
+  text-align: left;
+}
+.m-normal-weight {
+  font-weight: normal;
+}
+/*单行，多行文字文字溢出定义*/
+.m-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: normal;
+}
+.m-ellipsis-2l {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.m-ellipsis-3l {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+/*bar样式定义*/
+.m-bar {
+  height: .78rem;
+  background: #fff;
+}
+.m-bar_footer {
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.m-btn {
+  background: #ffba00;
+  display: block;
+  color: #fff;
+  height: .78rem;
+  line-height: .78rem;
+  text-align: center;
+}
+/*------------------------------------常用页面样式定义------------------------------------------*/
+/*注册页面样式*/
+.m-login-form {
+  overflow: hidden;
+}
+.m-login-form .icon {
+  font-size: .3rem;
+  padding-right: .2rem;
+}
+.m-login-form .icon-eye {
+  color: #999;
+}
+.m-login-form .icon-eye.on {
+  color: #ffba00;
+}
+.m-login-form .weui-cell__ft .m-24-text {
+  padding: 0.1rem 0 0.1rem 0.24rem;
+}
+/*商品列表页面样式*/
+.m-goods-list > li {
+  background: #fff;
+  line-height: 1.16;
+  padding: 0.24rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.m-goods-list > li > a .m-goods_info h3,
+.m-goods-list-type3 > li .m-goods_info .m-goods-h3 h3 a {
+  font-weight: normal;
+  color: #333;
+}
+.m-goods-list > li > a .m-goods_info > .m-ellipsis.m-22-text {
+  padding: 0.17rem 0 0.24rem;
+}
+.m-goods-list-type1 .m-goods_img {
+  width: 2.49rem;
+  height: 1.87rem;
+  position: relative;
+  font-size: 0;
+}
+.m-goods-list-type1 .m-goods_img img {
+  width: 100%;
+  height: 100%;
+}
+.m-goods-list-type1 .m-goods_info {
+  width: 54%;
+}
+.m-goods-list-outStore .m-goods_info,
+.m-goods-list-outStore .m-goods_info .m-orange-text,
+.m-goods-list-outStore .m-goods_info h3,
+.m-goods-list-type3 > li.m-goods-list-outStore .m-goods_info .m-goods-h3 h3 a {
+  color: #b9b9b9 !important;
+}
+.m-goods-list-outStore .m-goods_img .m-goods_img-tag {
+  position: absolute;
+  background: url("../assets/images/tag-out.png") no-repeat;
+  top: .14rem;
+  left: -0.04rem;
+  width: .81rem;
+  height: .42rem;
+  background-size: 100% 100%;
+}
+.m-goods-list-outStore .m-goods_img .m-goods_img-tips {
+  position: absolute;
+  line-height: 1.8;
+  background: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+.m-goods-list-type2 {
+  background: #fff;
+  overflow: hidden;
+}
+.m-goods-list-type2 > li {
+  float: left;
+  width: 33.3333%;
+  padding: 0;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+.m-goods-list-type2 > li:nth-child(3n) {
+  border-right: 0;
+}
+.m-goods-list-type2 > li > a {
+  margin: .2rem;
+  display: block;
+  padding-bottom: .3rem;
+}
+.m-goods-list-type2 .m-goods_img {
+  position: relative;
+  font-size: 0;
+  height: 2.18rem;
+}
+.m-goods-list-type2 .m-goods_img img,
+.m-goods-list-type3 .m-goods_img img {
+  height: 100%;
+}
+.m-goods-list-type2 > li > a .m-goods_info .m-goods-h3 {
+  height: .56rem;
+  margin: .14rem 0;
+  overflow: hidden;
+}
+.m-goods-list-type2 .m-goods_info-price .m-line-cross {
+  line-height: .25rem;
+}
+.m-goods-list-type3 {
+  overflow: hidden;
+}
+.m-goods-list-type3 > li {
+  background: transparent;
+  float: left;
+  width: 50%;
+  padding: 0 .07rem .07rem 0;
+  box-sizing: border-box;
+}
+.m-goods-list-type3 > li:nth-child(2n) {
+  padding-right: 0;
+}
+.m-goods-list-type3 > li .m-goods-list_box {
+  background: #fff;
+  padding: 0.24rem;
+}
+.m-goods-list-type3 .m-goods_img {
+  position: relative;
+  font-size: 0;
+  height: 2.84rem;
+}
+.m-goods-list-type3 > li .m-goods_info .m-goods-h3 {
+  height: .56rem;
+  margin: .24rem 0 .2rem 0;
+  overflow: hidden;
+}
+.m-goods-list-type3 > li .m-goods_info-price {
+  overflow: hidden;
+}
+.m-goods-list-type3 > li .m-goods_info-price .m-line-cross {
+  display: block;
+}
+.m-goods-list-type3 > li .m-goods_info-price .icon-cart {
+  width: .58rem;
+  height: .58rem;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #ffba00;
+  color: #fff;
+  display: block;
+  text-align: center;
+  font-size: .32rem;
+  line-height: .58rem;
+}
+.m-goods-list-type3 > li.m-goods-list-outStore .m-goods_info-price .icon-cart {
+  background: #dfdfdf;
+}
+.m-goods_pop {
+  background: #fff;
+  padding: .24rem;
+}
+.m-goods_pop .m-goods_pop_head {
+  position: relative;
+  padding: 0 .77rem .24rem 1.96rem;
+}
+.m-goods_pop .m-goods_pop_img {
+  width: 1.78rem;
+  font-size: 0;
+  line-height: 1;
+  height: 1.78rem;
+  position: absolute;
+  left: 0;
+  top: -0.62rem;
+  overflow: hidden;
+  border-radius: 6px;
+  border: 1px solid #e5e5e5;
+}
+.m-goods_pop .m-goods_pop_img img {
+  width: 100%;
+  height: 100%;
+}
+.m-goods_pop .m-goods_pop_head .icon-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: .6rem;
+  height: .6rem;
+  text-align: right;
+}
+.m-goods_pop .m-goods_pop_spec .weui-cell,
+.m-goods_pop_spec_box .weui-cell {
+  padding: 0;
+}
+.m-goods_pop .m-goods_pop_spec h3 {
+  padding-bottom: .2rem;
+}
+.m-goods_pop_spec_check {
+  height: .38rem;
+  position: relative;
+}
+.m-goods_pop_spec-txt {
+  padding-left: .2rem;
+}
+.m-goods_pop_spec_box {
+  max-height: 5rem;
+  overflow: scroll;
+}
+/*购物车页面样式*/
+.m-cart > li {
+  background: #fff;
+  overflow: hidden;
+  padding: 0.24rem;
+}
+.m-cart_check {
+  position: relative;
+  padding-top: .46rem;
+}
+.m-cart_img {
+  width: 1.5rem;
+  height: 1.5rem;
+  position: relative;
+  margin-left: .1rem;
+  font-size: 0;
+}
+.m-cart_img img {
+  width: 100%;
+  height: 100%;
+}
+.m-cart_info {
+  width: 61%;
+}
+.m-cart_info_head {
+  overflow: hidden;
+}
+.m-cart_info_head > h3 {
+  font-weight: normal;
+  width: 60%;
+  line-height: 1.2;
+}
+.m-cart_info_head > strong {
+  width: 40%;
+  padding-left: .2rem;
+  text-align: right;
+  box-sizing: border-box;
+}
+.m-cart_info > .m-ellipsis.m-18-text {
+  padding: .1rem 0;
+}
+.m-cart_info_bottom {
+  overflow: hidden;
+}
+.m-cart_info_bottom .weui-cell {
+  padding: 0;
+}
+.m-cart_info_bottom .m-color-text {
+  padding-top: .1rem;
+}
+.m-cart-out-store .m-cart_info_head,
+.m-cart-out-store .m-cart_info_head > strong,
+.m-cart-out-store .m-ellipsis.m-18-text,
+.m-cart-out-store .m-number-input,
+.m-cart-type1 .m-cart-out-store .m-cart_spec strong {
+  color: #b9b9b9 !important;
+}
+.m-cart-out-store .m-cart_img img {
+  opacity: .3;
+}
+.m-cart-out-store .m-cart_img .m-cart_tips {
+  position: absolute;
+  padding: 0 .1rem;
+  box-sizing: border-box;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  width: 100%;
+  text-align: center;
+  line-height: 1.8;
+}
+.m-bar_check {
+  margin: .2rem 0 0 .24rem;
+}
+.m-bar_check .magic-checkbox + label:after {
+  left: .13rem;
+}
+.m-bar_footer a.m-pull-left {
+  padding: .2rem 0 0 .2rem;
+  color: #333;
+}
+.m-bar_footer .m-right-text.m-pull-right {
+  line-height: 1.2;
+  padding-top: .1rem;
+}
+.m-bar_footer a.m-26-text {
+  height: .78rem;
+  line-height: .78rem;
+  background: #ffba00;
+  color: #fff;
+  padding: 0 .58rem;
+  margin-left: .2rem;
+  display: block;
+}
+.m-cart-type1 .m-cart_info_head > h3 {
+  width: 100%;
+}
+.m-cart-type1 .m-cart_spec .m-ellipsis.m-18-text {
+  padding: .1rem 0;
+}
+/*订单列表页面样式*/
+.m-book-list > li {
+  background: #fff;
+  margin-top: .2rem;
+}
+.m-book-list .m-flexbox {
+  padding: .24rem;
+  box-sizing: border-box;
+}
+.m-book-list .m-flexbox-item > img {
+  width: 1.28rem;
+  height: 1.28rem;
+}
+.m-book-list_footer {
+  overflow: hidden;
+}
+.m-book-list_footer .weui-btn + .weui-btn {
+  margin-top: 0;
+  margin-left: .1rem;
+}
+.m-book-list_footer > .m-pull-left {
+  line-height: .52rem;
+}
+/*地址列表页面样式*/
+.m-address-list > li {
+  background: #fff;
+  position: relative;
+  margin-bottom: .2rem;
+  overflow: hidden;
+  padding: .24rem;
+}
+.m-address-list .m-check {
+  position: relative;
+}
+.m-address-list .m-address-list_info {
+  width: 72%;
+  margin-left: .64rem;
+}
+.m-address-list .m-pull-right .icon-edit {
+  font-size: .3rem;
+  padding-right: .1rem;
+}
+.m-address_tag-default {
+  display: none;
+  position: absolute;
+  right: -0.43rem;
+  bottom: -0.18rem;
+  background: #ffba00;
+  color: #fff;
+  font-size: .18rem;
+  padding: .08rem .4rem .2rem .4rem;
+  height: .4rem;
+  transform: rotate(-45deg) scale(0.85);
+}
+@media screen and (min-width: 320px) and (max-width: 340px) {
+  .m-address_tag-default {
+    bottom: -0.13rem;
+  }
+}
+.m-address-default .m-address_tag-default {
+  display: block;
+}
+/*-------------------------------------------第三方checkbox样式引入-----------------------------------------*/
+@keyframes hover-color {
+  from {
+    border-color: #c0c0c0;
+  }
+  to {
+    border-color: #ffba00;
+  }
+}
+.magic-radio,
+.magic-checkbox {
+  position: absolute;
+  display: none;
+}
+.magic-radio[disabled],
+.magic-checkbox[disabled] {
+  cursor: not-allowed;
+}
+.magic-radio + label,
+.magic-checkbox + label {
+  position: relative;
+  display: block;
+  padding-left: .48rem;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.magic-radio + label:hover:before,
+.magic-checkbox + label:hover:before {
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+  animation-name: hover-color;
+}
+.magic-radio + label:before,
+.magic-checkbox + label:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  width: .38rem;
+  height: .38rem;
+  content: '';
+  border: 1px solid #c0c0c0;
+  box-sizing: border-box;
+}
+.magic-radio + label:after,
+.magic-checkbox + label:after {
+  position: absolute;
+  display: none;
+  content: '';
+}
+.magic-radio[disabled] + label,
+.magic-checkbox[disabled] + label {
+  cursor: not-allowed;
+  color: #e4e4e4;
+}
+.magic-radio[disabled] + label:hover,
+.magic-radio[disabled] + label:before,
+.magic-radio[disabled] + label:after,
+.magic-checkbox[disabled] + label:hover,
+.magic-checkbox[disabled] + label:before,
+.magic-checkbox[disabled] + label:after {
+  cursor: not-allowed;
+}
+.magic-radio[disabled] + label:hover:before,
+.magic-checkbox[disabled] + label:hover:before {
+  border: 1px solid #e4e4e4;
+  animation-name: none;
+}
+.magic-radio[disabled] + label:before,
+.magic-checkbox[disabled] + label:before {
+  border-color: #e4e4e4;
+}
+.magic-radio:checked + label:before,
+.magic-checkbox:checked + label:before {
+  animation-name: none;
+}
+.magic-radio:checked + label:after,
+.magic-checkbox:checked + label:after {
+  display: block;
+}
+.magic-radio + label:before {
+  border-radius: 50%;
+}
+.magic-radio + label:after {
+  top: .11rem;
+  left: .11rem;
+  width: .16rem;
+  height: .16rem;
+  border-radius: 50%;
+  background: #ffba00;
+}
+@media screen and (min-width: 320px) and (max-width: 360px) {
+  .magic-radio + label:after {
+    top: .1rem;
+    left: .1rem;
+  }
+}
+.magic-radio:checked + label:before {
+  border: 1px solid #ffba00;
+}
+.magic-radio:checked[disabled] + label:before {
+  border: 1px solid #c9e2f9;
+}
+.magic-radio:checked[disabled] + label:after {
+  background: #c9e2f9;
+}
+.magic-checkbox + label:before {
+  border-radius: 50%;
+}
+.magic-checkbox.magic-checkbox-square + label:before {
+  border-radius: 4px;
+}
+.magic-checkbox + label:after {
+  top: .08rem;
+  left: .12rem;
+  box-sizing: border-box;
+  width: .12rem;
+  height: .18rem;
+  transform: rotate(45deg);
+  border-width: 2px;
+  border-style: solid;
+  border-color: #fff;
+  border-top: 0;
+  border-left: 0;
+}
+.magic-checkbox:checked + label:before {
+  border: #ffba00;
+  background: #ffba00;
+}
+.magic-checkbox:checked[disabled] + label:before {
+  border: #c9e2f9;
+  background: #c9e2f9;
+}
+/*iconfont*/
+@font-face {
+  font-family: 'icon';
+  /* project id 320322 */
+  src: url('//at.alicdn.com/t/font_kqt2ro7khli60f6r.eot');
+  src: url('//at.alicdn.com/t/font_kqt2ro7khli60f6r.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_kqt2ro7khli60f6r.woff') format('woff'), url('//at.alicdn.com/t/font_kqt2ro7khli60f6r.ttf') format('truetype'), url('//at.alicdn.com/t/font_kqt2ro7khli60f6r.svg#iconfont') format('svg');
+}
+.icon {
+  font-family: "icon" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-mobile:before {
+  content: "\e600";
+}
+.icon-lock:before {
+  content: "\e601";
+}
+.icon-idcode:before {
+  content: "\e602";
+}
+.icon-cart:before {
+  content: "\e60c";
+}
+.icon-edit:before {
+  content: "\e616";
+}
+.icon-close:before {
+  content: "\e64c";
+}
+.icon-mright:before {
+  content: "\e69a";
+}
+.icon-eye:before {
+  content: "\e603";
+}

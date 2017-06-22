@@ -1,0 +1,248 @@
+<template>
+  <div class="m-cell-box">
+    <div class="weui-cell m-tap-active weui-cell_access" @click="onClick" v-show="showCell">
+      <div class="weui-cell__hd">
+        <label class="weui-label" :style="{display: 'block', width: $parent.labelWidth || $parent.$parent.labelWidth, textAlign: $parent.labelAlign || $parent.$parent.labelAlign, marginRight: $parent.labelMarginRight || $parent.$parent.labelMarginRight}" v-if="title" v-html="title"></label>
+        <inline-desc v-if="inlineDesc">{{inlineDesc}}</inline-desc>
+      </div>
+      <div class="m-cell-primary m-popup-picker-select-box">
+        <div class="m-popup-picker-select" :style="{textAlign: valueTextAlign}">
+          <span class="m-popup-picker-value" v-if="!displayFormat && !showName && value.length">{{value | array2string}}</span>
+          <span class="m-popup-picker-value" v-if="!displayFormat && showName && value.length">{{value | value2name(data)}}</span>
+          <span class="m-popup-picker-value" v-if="displayFormat && value.length">{{ displayFormat(value) }}</span>
+          <span v-if="!value.length && placeholder" v-html="placeholder"></span>
+        </div>
+      </div>
+      <div class="weui-cell__ft">
+      </div>
+    </div>
+
+    <popup v-model="showValue" class="m-popup-picker" :id="'m-popup-picker-'+uuid" @on-hide="onPopupHide" @on-show="$emit('on-show')">
+      <div class="m-popup-picker-container">
+        <div class="m-popup-picker-header">
+          <flexbox>
+            <flexbox-item class="m-popup-picker-header-menu" @click.native="onHide(false)">{{cancelText}}</flexbox-item>
+            <flexbox-item class="m-popup-picker-header-menu m-popup-picker-header-menu-right" @click.native="onHide(true)">{{confirmText}}</flexbox-item>
+          </flexbox>
+        </div>
+        <picker
+        :data="data"
+        v-model="tempValue"
+        @on-change="onPickerChange"
+        :columns="columns"
+        :fixed-columns="fixedColumns"
+        :container="'#m-popup-picker-'+uuid"></picker>
+      </div>
+    </popup>
+
+  </div>
+</template>
+
+
+<script>
+import Picker from '../picker';
+import Cell from '../cell';
+import Popup from '../popup';
+import InlineDesc from '../inline-desc';
+import Flexbox from '../flexbox/flexbox.vue';
+import FlexboxItem from '../flexbox/flexbox-item.vue';
+import array2string from '../../filters/array2String';
+import value2name from '../../filters/value2name';
+import uuidMixin from '../../libs/mixin_uuid';
+
+const getObject = function (obj) {
+  return JSON.parse(JSON.stringify(obj));
+};
+
+export default {
+  created () {
+    if (typeof this.show !== 'undefined') {
+      this.showValue = this.show;
+    }
+  },
+  mixins: [uuidMixin],
+  components: {
+    Picker,
+    Cell,
+    Popup,
+    Flexbox,
+    FlexboxItem,
+    InlineDesc
+  },
+  filters: {
+    array2string,
+    value2name
+  },
+  props: {
+    valueTextAlign: {
+      type: String,
+      default: 'right'
+    },
+    title: String,
+    cancelText: {
+      type: String,
+      default: 'Cancel'
+    },
+    confirmText: {
+      type: String,
+      default: 'OK'
+    },
+    data: {
+      type: Array,
+      default () {
+        return [];
+      }
+    },
+    placeholder: String,
+    columns: {
+      type: Number,
+      default: 0
+    },
+    fixedColumns: {
+      type: Number,
+      default: 0
+    },
+    value: {
+      type: Array,
+      default () {
+        return [];
+      }
+    },
+    showName: Boolean,
+    inlineDesc: [String, Number, Array, Object, Boolean],
+    showCell: {
+      type: Boolean,
+      default: true
+    },
+    show: Boolean,
+    displayFormat: Function
+  },
+  methods: {
+    getNameValues () {
+      return value2name(this.currentValue, this.data);
+    },
+    onClick () {
+      this.showValue = true;
+    },
+    onHide (type) {
+      this.showValue = false;
+      if (type) {
+        this.closeType = true;
+        this.currentValue = getObject(this.tempValue);
+      }
+      if (!type) {
+        this.closeType = false;
+        if (this.value.length > 0) {
+          this.tempValue = getObject(this.currentValue);
+        }
+      }
+    },
+    onPopupHide (val) {
+      if (this.value.length > 0) {
+        this.tempValue = getObject(this.currentValue);
+      }
+      this.$emit('on-hide', this.closeType);
+    },
+    onPickerChange (val) {
+      if (JSON.stringify(this.currentValue) !== JSON.stringify(val)) {
+        // if has value, replace it
+        if (this.value.length) {
+          const nowData = JSON.stringify(this.data);
+          if (nowData !== this.currentData && this.currentData !== '[]') {
+            this.tempValue = getObject(val);
+          }
+          this.currentData = nowData;
+        } else { // if no value, stay quiet
+          // if set to auto update, do update the value
+        }
+      }
+      this.$emit('on-shadow-change', getObject(val));
+    }
+  },
+  watch: {
+    value (val) {
+      if (JSON.stringify(val) !== JSON.stringify(this.tempValue)) {
+        this.tempValue = getObject(val);
+      }
+    },
+    currentValue (val) {
+      this.$emit('on-change', getObject(val));
+      this.$emit('input', getObject(val));
+    },
+    show (val) {
+      this.showValue = val;
+    }
+  },
+  data () {
+    return {
+      onShowProcess: false,
+      tempValue: getObject(this.value),
+      closeType: false,
+      currentData: JSON.stringify(this.data), // used for detecting if it is after data change
+      showValue: false,
+      currentValue: this.value
+    };
+  }
+};
+</script>
+
+<style lang="less">
+@import '../../styles/variable.less';
+
+.m-cell-box {
+  position: relative;
+}
+.m-cell-box:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  border-top: 1px solid #D9D9D9;
+  color: #D9D9D9;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+  left: .24rem;
+}
+.m-popup-picker-header {
+  height: .68rem;
+  line-height: .68rem;
+  font-size: .26rem;
+  color: @popup-picker-header-text-color;
+}
+.m-popup-picker-value {
+  /* display: inline-block; */
+}
+.m-popup-picker-header-menu {
+  text-align: left;
+  padding-left: .24rem;
+}
+.m-popup-picker-header-menu-right {
+  text-align: right;
+  padding-right: .24rem;
+}
+.m-popup-picker-select {
+  width: 100%;
+  position: relative;
+}
+.m-popup-picker-select span {
+  padding-right: .24rem;
+}
+.m-popup-picker-select-box.weui-cell__bd:after {
+  content: " ";
+  display: inline-block;
+  transform: rotate(45deg);
+  height: 6px;
+  width: 6px;
+  border-width: 2px 2px 0 0;
+  border-color: #C8C8CD;
+  border-style: solid;
+  position: relative;
+  top: -2px;
+  position: absolute;
+  top: 50%;
+  right: .24rem;
+  margin-top: -3px;
+}
+</style>
