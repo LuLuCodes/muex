@@ -64,67 +64,28 @@
   .m-pop-in-enter-active,
   .m-pop-in-leave-active {
     will-change: transform;
+    transition: all 500ms;
     height: 100%;
+    top: 46px;
     position: absolute;
-    left: 0;
-  }
-  
-  .m-pop-out-enter-active {
-    animation-name: popInLeft;
-  }
-  
-  .m-pop-out-leave-active {
-    animation-name: popOutRight;
-  }
-  
-  .m-pop-in-enter-active {
+    backface-visibility: hidden;
     perspective: 1000;
-    animation-name: popInRight;
   }
-  
+
+  .m-pop-out-enter {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+  .m-pop-out-leave-active {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+  .m-pop-in-enter {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
   .m-pop-in-leave-active {
-    animation-name: popOutLeft;
-  }
-  
-  @keyframes popInLeft {
-    from {
-      opacity: 0;
-      transform: translate3d(-100%, 0, 0);
-    }
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  
-  @keyframes popOutLeft {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-      transform: translate3d(-100%, 0, 0);
-    }
-  }
-  
-  @keyframes popInRight {
-    from {
-      opacity: 0;
-      transform: translate3d(100%, 0, 0);
-    }
-    to {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  
-  @keyframes popOutRight {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-      transform: translate3d(100%, 0, 0);
-    }
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
   }
 </style>

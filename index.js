@@ -26,7 +26,6 @@ import cookie from './src/tools/cookie/index.js';
 import dateFormat from './src/tools/date/format.js';
 import dateRange from './src/tools/date/range.js';
 import Datetime from './src/components/datetime/index.vue';
-import DatetimePlugin from './src/plugins/datetime/index.js';
 import debounce from './src/tools/debounce/index.js';
 import DevicePlugin from './src/plugins/device/index.js';
 import Divider from './src/components/divider/index.vue';
@@ -116,7 +115,6 @@ export {
   dateFormat,
   dateRange,
   Datetime,
-  DatetimePlugin,
   debounce,
   DevicePlugin,
   Divider,
