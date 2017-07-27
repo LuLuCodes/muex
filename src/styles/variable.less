@@ -1,10 +1,8 @@
 @namespace: mue;
 
-@color-wechat-green: #04BE02;
-
-@theme-color: #ffba00;
+@theme-color: #04BE02;
 @opacity-disabled: 0.5;
-@body-color:#333;
+
 
 /**
 * actionsheet
@@ -17,14 +15,14 @@
 /**
 * datetime
 */
-@datetime-header-item-font-color: @body-color;
-@datetime-header-item-cancel-font-color: @datetime-header-item-font-color;
+@datetime-header-item-font-color: @theme-color;
+@datetime-header-item-cancel-font-color: #828282;
 @datetime-header-item-confirm-font-color: @datetime-header-item-font-color;
 
 /**
 * tabbar
 */
-@tabbar-text-active-color: @theme-color;
+@tabbar-text-active-color: #09BB07;
 
 /**
 * tab
@@ -64,7 +62,13 @@
 /**
 * Cell
 */
-@cell-label-color: #333;
+@cell-label-color: #000;
+@cell-font-size: 17px;
+@cell-tips-font-size: 14px;
+@cell-default-arrow-color: #C8C8CD;
+@cell-disabled-arrow-color: #e2e2e2;
+@cell-default-arrow-border-width: 2px;
+@cell-default-arrow-width: 6px;
 
 /**
 * Mask
@@ -86,10 +90,10 @@
 /**
 * Header
 */
-@header-background-color: @theme-color;
+@header-background-color: #35495e;
 @header-title-color: #fff;
-@header-text-color: #fff;
-@header-arrow-color: #fff;
+@header-text-color: #ccc;
+@header-arrow-color: #ccc;
 
 /**
 * Timeline
@@ -107,25 +111,28 @@
 * Button
 */
 
-@button-global-border-radius: .05rem;
+@button-global-border-radius: 5px;
 @button-global-font-color: #FFFFFF;
-@button-global-margin-top: .2rem;
-@button-global-height: .76rem;
+@button-global-margin-top: 15px;
+@button-global-height: 42px;
 @button-global-disabled-font-color: rgba(255,255,255,.6);
 @button-global-active-font-color: rgba(255,255,255,.6);
-@button-global-font-size: .28rem;
+@button-global-font-size: 18px;
 
-@button-warn-bg-color: #ff3000;
-@button-warn-active-color: #ff3000;
+@button-warn-bg-color: #E64340;
+@button-warn-active-color: #CE3C39;
+@button-warn-disabled-bg-color: #EC8B89;
 
-@button-default-bg-color: #f5f5f5;
-@button-default-font-color: #333;
-@button-default-active-bg-color: #f5f5f5;
+@button-default-bg-color: #F8F8F8;
+@button-default-font-color: #000000;
+@button-default-active-bg-color: #DEDEDE;
 @button-default-disabled-font-color: rgba(0,0,0,.3);
+@button-default-disabled-bg-color: #F7F7F7;
 @button-default-active-font-color: rgba(0,0,0,.6);
 
-@button-primary-bg-color: @theme-color;
-@button-primary-active-bg-color: @theme-color;
+@button-primary-bg-color: #1AAD19;
+@button-primary-active-bg-color: #179B16;
+@button-primary-disabled-bg-color: #9ED99D;
 
 /**
 * swipeout
@@ -140,7 +147,7 @@
 /**
 * Cell
 */
-@cell-body-label-color: #333;
+@cell-body-label-color: #000;
 
 /**
 * Badge
@@ -159,7 +166,7 @@
 * Button tab
 */
 @button-tab-border-width: 1px;
-@button-tab-border-radius: .34rem;
+@button-tab-border-radius: 16px;
 
 @button-tab-border-color: @theme-color;
 @button-tab-default-border-color: @button-tab-border-color;
@@ -172,8 +179,8 @@
 @button-tab-active-text-color: @button-tab-active-font-color;
 @button-tab-default-text-color: #999;
 
-@button-tab-height: .68rem;
-@button-tab-line-height: .68rem;
+@button-tab-height: 30px;
+@button-tab-line-height: 31px;
 
 /**
 * Swiper
@@ -188,7 +195,27 @@
 /**
 * popup-picker
 */
-@popup-picker-header-text-color: @body-color;
+@popup-picker-header-text-color: @theme-color;
+@popup-picker-header-bg-color: #fbf9fe;
+@popup-picker-header-font-size: 16px;
+@popup-picker-header-cancel-text-color: #828282;
+
+/**
+* popup
+*/
+@popup-background-color: #eee;
+
+/**
+* popup-header
+*/
+@popup-header-height: 44px;
+@popup-header-bg-color: #fbf9fe;
+@popup-header-font-size: 16px;
+@popup-header-left-text-color: #828282;
+@popup-header-right-text-color: @theme-color;
+@popup-header-title-text-color: #222;
+@popup-header-left-text-padding: 15px;
+@popup-header-right-text-padding: 15px;
 
 /**
 * form-preview
@@ -201,6 +228,49 @@
 @load-more-line-color: #E5E5E5;
 
 /**
-* popup
+* sticky
 */
-@popup-background-color: #eee;
+@sticky-zindex: 500;
+
+/**
+* group
+*/
+@group-title-margin-top: .77em;
+@group-title-margin-bottom: .3em;
+
+/**
+* toast
+*/
+@toast-content-font-size: 16px;
+@toast-top: 180px;
+@toast-position-top-offset: 10px;
+@toast-position-bottom-offset: 10px;
+@toast-z-index: 5000;
+
+
+/**
+* icon
+*/
+@icon-success-color: #09BB07;
+
+/**
+* calendar
+*/
+@calendar-arrow-color: @theme-color;
+@calendar-highlight-color: #E59313;
+@calendar-selected-bg-color: @theme-color;
+@calendar-disabled-font-color: #c0c0c0;
+@calendar-today-font-color: @theme-color;
+@calendar-date-item-font-size: 16px;
+
+/**
+* search
+*/
+@search-cancel-font-color: #09BB07;
+@search-bg-color: #EFEFF4;
+@search-placeholder-font-color: #9B9B9B;
+
+/**
+* radio
+*/
+@radio-checked-icon-color: #09BB07;
