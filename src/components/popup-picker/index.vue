@@ -2,7 +2,9 @@
   <div class="m-cell-box">
     <div class="weui-cell m-tap-active weui-cell_access" @click="onClick" v-show="showCell">
       <div class="weui-cell__hd">
-        <label class="weui-label" :style="{display: 'block', width: $parent.labelWidth || $parent.$parent.labelWidth, textAlign: $parent.labelAlign || $parent.$parent.labelAlign, marginRight: $parent.labelMarginRight || $parent.$parent.labelMarginRight}" v-if="title" v-html="title"></label>
+        <slot name="title" label-class="weui-label" :label-style="labelStyles" :label-title="title">
+          <label class="weui-label" :class="labelClass" :style="labelStyles" v-if="title" v-html="title"></label>
+        </slot>
         <inline-desc v-if="inlineDesc">{{inlineDesc}}</inline-desc>
       </div>
       <div class="m-cell-primary m-popup-picker-select-box">
@@ -10,18 +12,24 @@
           <span class="m-popup-picker-value" v-if="!displayFormat && !showName && value.length">{{value | array2string}}</span>
           <span class="m-popup-picker-value" v-if="!displayFormat && showName && value.length">{{value | value2name(data)}}</span>
           <span class="m-popup-picker-value" v-if="displayFormat && value.length">{{ displayFormat(value) }}</span>
-          <span v-if="!value.length && placeholder" v-html="placeholder"></span>
+          <span v-if="!value.length && placeholder" v-text="placeholder" class="m-popup-picker-placeholder"></span>
         </div>
       </div>
       <div class="weui-cell__ft">
       </div>
     </div>
 
-    <popup v-model="showValue" class="m-popup-picker" :id="'m-popup-picker-'+uuid" @on-hide="onPopupHide" @on-show="$emit('on-show')">
+    <popup
+      v-model="showValue"
+      class="m-popup-picker"
+      :id="`m-popup-picker-${uuid}`"
+      @on-hide="onPopupHide"
+      @on-show="onPopupShow"
+      :popup-style="popupStyle">
       <div class="m-popup-picker-container">
-        <div class="m-popup-picker-header">
+        <div class="m-popup-picker-header" @touchmove.prevent>
           <flexbox>
-            <flexbox-item class="m-popup-picker-header-menu" @click.native="onHide(false)">{{cancelText}}</flexbox-item>
+            <flexbox-item class="m-popup-picker-header-menu m-popup-picker-cancel" @click.native="onHide(false)">{{cancelText}}</flexbox-item>
             <flexbox-item class="m-popup-picker-header-menu m-popup-picker-header-menu-right" @click.native="onHide(true)">{{confirmText}}</flexbox-item>
           </flexbox>
         </div>
@@ -31,7 +39,8 @@
         @on-change="onPickerChange"
         :columns="columns"
         :fixed-columns="fixedColumns"
-        :container="'#m-popup-picker-'+uuid"></picker>
+        :container="`#m-popup-picker-${uuid}`"
+        :column-width="columnWidth"></picker>
       </div>
     </popup>
 
@@ -81,11 +90,11 @@ export default {
     title: String,
     cancelText: {
       type: String,
-      default: 'Cancel'
+      default: '取消'
     },
     confirmText: {
       type: String,
-      default: 'OK'
+      default: '确定'
     },
     data: {
       type: Array,
@@ -115,9 +124,27 @@ export default {
       default: true
     },
     show: Boolean,
-    displayFormat: Function
+    displayFormat: Function,
+    columnWidth: Array,
+    popupStyle: Object
+  },
+  computed: {
+    labelStyles () {
+      return {
+        display: 'block',
+        width: this.$parent.labelWidth || this.$parent.$parent.labelWidth || 'auto',
+        textAlign: this.$parent.labelAlign || this.$parent.$parent.labelAlign,
+        marginRight: this.$parent.labelMarginRight || this.$parent.$parent.labelMarginRight
+      };
+    },
+    labelClass () {
+      return {
+        'vux-cell-justify': this.$parent.labelAlign === 'justify' || this.$parent.$parent.labelAlign === 'justify'
+      };
+    }
   },
   methods: {
+    value2name,
     getNameValues () {
       return value2name(this.currentValue, this.data);
     },
@@ -136,6 +163,11 @@ export default {
           this.tempValue = getObject(this.currentValue);
         }
       }
+    },
+    onPopupShow () {
+      // reset close type to false
+      this.closeType = false;
+      this.$emit('on-show');
     },
     onPopupHide (val) {
       if (this.value.length > 0) {
@@ -166,8 +198,8 @@ export default {
       }
     },
     currentValue (val) {
-      this.$emit('on-change', getObject(val));
       this.$emit('input', getObject(val));
+      this.$emit('on-change', getObject(val));
     },
     show (val) {
       this.showValue = val;
@@ -188,6 +220,11 @@ export default {
 
 <style lang="less">
 @import '../../styles/variable.less';
+@import '../../styles/1px.less';
+
+.m-cell-primary {
+  flex: 1;
+}
 
 .m-cell-box {
   position: relative;
@@ -244,5 +281,13 @@ export default {
   top: 50%;
   right: .24rem;
   margin-top: -3px;
+}
+
+.m-popup-picker-cancel {
+  color: @popup-picker-header-cancel-text-color;
+}
+
+.m-popup-picker-placeholder {
+  color: #999;
 }
 </style>

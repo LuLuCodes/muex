@@ -1,6 +1,7 @@
 // Thanks to: https://github.com/calebroseland/vue-dom-portal
 
 import objectAssign from 'object-assign';
+
 /**
  * Get target DOM Node
  * @param {(Node|string|Boolean)} [node=document.body] DOM Node, CSS selector, or Boolean
@@ -8,16 +9,40 @@ import objectAssign from 'object-assign';
  */
 function getTarget(node) {
   if (node === void 0) {
-    node = document.body;
-  }
-  if (node === true) {
     return document.body;
   }
+
+  if (typeof node === 'string' && node.indexOf('?') === 0) {
+    return document.body;
+  } else if (typeof node === 'string' && node.indexOf('?') > 0) {
+    node = node.split('?')[0];
+  }
+
+  if (node === 'body' || node === true) {
+    return document.body;
+  }
+
   return node instanceof window.Node ? node : document.querySelector(node);
 }
 
+function getShouldUpdate(node) {
+  // do not updated by default
+  if (!node) {
+    return false;
+  }
+  if (typeof node === 'string' && node.indexOf('?') > 0) {
+    try {
+      const config = JSON.parse(node.split('?')[1]);
+      return config.autoUpdate || false;
+    } catch (e) {
+      return false;
+    }
+  }
+  return false;
+}
+
 const directive = {
-  inserted (el, {value}, vnode) {
+  inserted(el, {value}, vnode) {
     el.className = el.className ? el.className + ' v-transfer-dom' : 'v-transfer-dom';
     const parentNode = el.parentNode;
     var home = document.createComment('');
@@ -37,7 +62,11 @@ const directive = {
       };
     }
   },
-  componentUpdated (el, {value}) {
+  componentUpdated(el, {value}) {
+    const shouldUpdate = getShouldUpdate(value);
+    if (!shouldUpdate) {
+      return;
+    }
     // need to make sure children are done updating (vs. `update`)
     var ref$1 = el.__transferDomData;
     // homes.get(el)
