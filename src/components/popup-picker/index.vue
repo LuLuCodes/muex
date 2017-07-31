@@ -18,32 +18,33 @@
       <div class="weui-cell__ft">
       </div>
     </div>
-
-    <popup
-      v-model="showValue"
-      class="m-popup-picker"
-      :id="`m-popup-picker-${uuid}`"
-      @on-hide="onPopupHide"
-      @on-show="onPopupShow"
-      :popup-style="popupStyle">
-      <div class="m-popup-picker-container">
-        <div class="m-popup-picker-header" @touchmove.prevent>
-          <flexbox>
-            <flexbox-item class="m-popup-picker-header-menu m-popup-picker-cancel" @click.native="onHide(false)">{{cancelText}}</flexbox-item>
-            <flexbox-item class="m-popup-picker-header-menu m-popup-picker-header-menu-right" @click.native="onHide(true)">{{confirmText}}</flexbox-item>
-          </flexbox>
+  
+    <div v-transfer-dom="isTransferDom">
+      <popup
+        v-model="showValue"
+        class="m-popup-picker"
+        :id="`m-popup-picker-${uuid}`"
+        @on-hide="onPopupHide"
+        @on-show="onPopupShow"
+        :popup-style="popupStyle">
+        <div class="m-popup-picker-container">
+          <div class="m-popup-picker-header" @touchmove.prevent>
+            <flexbox>
+              <flexbox-item class="m-popup-picker-header-menu m-popup-picker-cancel" @click.native="onHide(false)">{{cancelText}}</flexbox-item>
+              <flexbox-item class="m-popup-picker-header-menu m-popup-picker-header-menu-right" @click.native="onHide(true)">{{confirmText}}</flexbox-item>
+            </flexbox>
+          </div>
+          <picker
+            :data="data"
+            v-model="tempValue"
+            @on-change="onPickerChange"
+            :columns="columns"
+            :fixed-columns="fixedColumns"
+            :container="`#m-popup-picker-${uuid}`"
+            :column-width="columnWidth"></picker>
         </div>
-        <picker
-        :data="data"
-        v-model="tempValue"
-        @on-change="onPickerChange"
-        :columns="columns"
-        :fixed-columns="fixedColumns"
-        :container="`#m-popup-picker-${uuid}`"
-        :column-width="columnWidth"></picker>
-      </div>
-    </popup>
-
+      </popup>
+    </div>
   </div>
 </template>
 
@@ -58,12 +59,16 @@ import FlexboxItem from '../flexbox/flexbox-item.vue';
 import array2string from '../../filters/array2String';
 import value2name from '../../filters/value2name';
 import uuidMixin from '../../libs/mixin_uuid';
+import TransferDom from '../../directives/transfer-dom';
 
 const getObject = function (obj) {
   return JSON.parse(JSON.stringify(obj));
 };
 
 export default {
+  directives: {
+    TransferDom
+  },
   created () {
     if (typeof this.show !== 'undefined') {
       this.showValue = this.show;
@@ -125,6 +130,10 @@ export default {
     },
     show: Boolean,
     displayFormat: Function,
+    isTransferDom: {
+      type: Boolean,
+      default: true
+    },
     columnWidth: Array,
     popupStyle: Object
   },
