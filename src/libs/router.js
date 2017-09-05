@@ -19,7 +19,7 @@ export function go (url, $router, replace) {
 export function getUrl (url, $router) {
   // Make sure the href is right in hash mode
   if ($router && !$router._history && typeof url === 'string' && !/http/.test(url)) {
-    return `#!${url}`;
+    return '#!' + url;
   }
   return url && typeof url !== 'object' ? url : 'javascript:void(0);';
 }
