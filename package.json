@@ -1,6 +1,6 @@
 {
   "name": "muex",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "基于vue的移动端框架",
   "author": "qianqing <qian.qing@aliyun.com>",
   "private": false,
