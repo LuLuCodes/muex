@@ -1,6 +1,6 @@
-export function go (url, $router, replace) {
+export function go (url, $router, replace = false) {
   if (/^javas/.test(url) || !url) return;
-  var useRouter = typeof url === 'object' || ($router && typeof url === 'string' && !/http/.test(url));
+  let useRouter = typeof url === 'object' || ($router && typeof url === 'string' && !/http/.test(url));
   if (useRouter) {
     if (!replace) {
       $router.push(url);
