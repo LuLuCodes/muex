@@ -1,4 +1,4 @@
-export function go (url, $router, replace = false) {
+export function go (url, $router, replace) {
   if (/^javas/.test(url) || !url) return;
   const useRouter = typeof url === 'object' || ($router && typeof url === 'string' && !/http/.test(url));
   if (useRouter) {
