@@ -437,6 +437,24 @@ const routers = [
             resolve(require('./views/badge.vue'));
           });
         }
+      },
+      {
+        path: 'inlineCalendar',
+        name: 'inlineCalendar',
+        component (resolve) {
+          require.ensure(['./views/InlineCalendar.vue'], () => {
+            resolve(require('./views/InlineCalendar.vue'));
+          });
+        }
+      },
+      {
+        path: 'mSwitch',
+        name: 'mSwitch',
+        component (resolve) {
+          require.ensure(['./views/MSwitch.vue'], () => {
+            resolve(require('./views/MSwitch.vue'));
+          });
+        }
       }
     ]
   }
