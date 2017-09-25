@@ -37,6 +37,7 @@ import FriendlyTimeFilter from './src/filters/friendly-time.js';
 import Group from './src/components/group/index.vue';
 import GroupTitle from './src/components/group-title/index.vue';
 import Icon from './src/components/icon/index.vue';
+import InlineCalendar from './src/components/inline-calendar/index.vue'
 import InlineDesc from './src/components/inline-desc/index.vue';
 import InviewDirective from './src/directives/inview/index.js';
 import Loading from './src/components/loading/index.vue';
@@ -89,6 +90,7 @@ import MHeader from './src/components/m-header/index.vue';
 import MInput from './src/components/m-input/index.vue';
 import MNumber from './src/components/m-number/index.vue';
 import MTextarea from './src/components/m-textarea/index.vue';
+import MSwitch from './src/components/m-switch/index.vue';
 
 export {
   Actionsheet,
@@ -126,6 +128,7 @@ export {
   Group,
   GroupTitle,
   Icon,
+  InlineCalendar,
   InlineDesc,
   InviewDirective,
   Loading,
@@ -176,5 +179,6 @@ export {
   MHeader,
   MInput,
   MNumber,
-  MTextarea
+  MTextarea,
+  MSwitch
 };

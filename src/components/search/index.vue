@@ -12,11 +12,11 @@
         </div>
         <label :for="`search_input_${uuid}`" class="weui-search-bar__label" v-show="!isFocus && !value" v-if="label">
           <i class="weui-icon-search"></i>
-          <span>Search</span>
+          <span>搜索</span>
         </label>
       </form>
-      <a href="javascript:" class="weui-search-bar__cancel-btn" @click="cancel" v-if="label">cancel</a>
-      <a href="javascript:" class="weui-search-bar__cancel-btn" @click="submit" v-else>Search</a>
+      <a href="javascript:" class="weui-search-bar__cancel-btn" @click="cancel" v-if="label">取消</a>
+      <a href="javascript:" class="weui-search-bar__cancel-btn" @click="submit" v-else>搜索</a>
     </div>
     <div class="weui-cells m-search_show" v-show="isFixed">
       <slot></slot>
