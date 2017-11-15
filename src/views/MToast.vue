@@ -22,7 +22,7 @@
     <toast v-model="show3" type="cancel">type:cancel</toast>
     <toast v-model="show4" type="warn">type:warn</toast>
     <toast v-model="show5" :time="10000">time:10s</toast>
-    <toast v-model="show6" width="4.2rem" type="long">文字提示，折行文字提示折行文字提示</toast>
+    <toast v-model="show6" width="4.2rem" type="long" :time="10000">文字提示，折行文字提示折行文字提示</toast>
 
     <group title="prop:text">
       <cell title="type:success" @click.native="show7=true" is-link></cell>

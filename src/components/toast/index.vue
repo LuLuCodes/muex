@@ -153,7 +153,7 @@ export default {
   font-size: @toast-content-font-size;
 }
 .weui-loading_toast .weui-toast__content {
-  margin-top: 0;
+  margin-top:-0.25rem;
 }
 .weui-toast_success .weui-icon_toast:before {
   content: "\EA08";

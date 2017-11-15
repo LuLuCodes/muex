@@ -47,11 +47,11 @@
     methods: {
       showLoading () {
         this.$mue.loading.show({
-          text: 'Loading'
+          text: 'loading'
         });
         setTimeout(() => {
           this.$mue.loading.hide();
-        }, 2000);
+        }, 200000);
       }
     }
   };

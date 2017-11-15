@@ -46,7 +46,7 @@ export default {
 @import '../../styles/weui/widget/weui-loading/weui-loading.less';
 
 .weui-icon_toast.weui-loading {
-  margin: 30px 0 0;
+  margin: 15px 0 0;
   width: 38px;
   height: 38px;
   vertical-align: baseline;
@@ -54,5 +54,6 @@ export default {
 }
 .weui-loading_toast  .weui-toast{
   border-radius:.1rem;
+  width: 2.2rem;
 }
 </style>
