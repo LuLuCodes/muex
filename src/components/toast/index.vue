@@ -163,6 +163,5 @@ export default {
 }
 .weui-toast_forbidden .weui-icon_toast:before {
   content: "\EA0B";
-  color: #F76260;
 }
 </style>

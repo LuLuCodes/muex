@@ -14,17 +14,17 @@ import store from './vuex/store';
 import * as type from './vuex/type';
 
 // plugins
-import DevicePlugin from './plugins/device';
-import ToastPlugin from './plugins/toast';
-import AlertPlugin from './plugins/alert';
-import ConfirmPlugin from './plugins/confirm';
-import LoadingPlugin from './plugins/loading';
-
-Vue.use(DevicePlugin);
-Vue.use(ToastPlugin);
-Vue.use(AlertPlugin);
-Vue.use(ConfirmPlugin);
-Vue.use(LoadingPlugin);
+// import DevicePlugin from './plugins/device';
+// import ToastPlugin from './plugins/toast';
+// import AlertPlugin from './plugins/alert';
+// import ConfirmPlugin from './plugins/confirm';
+// import LoadingPlugin from './plugins/loading';
+//
+// Vue.use(DevicePlugin);
+// Vue.use(ToastPlugin);
+// Vue.use(AlertPlugin);
+// Vue.use(ConfirmPlugin);
+// Vue.use(LoadingPlugin);
 
 const FastClick = require('fastclick');
 FastClick.attach(document.body);
