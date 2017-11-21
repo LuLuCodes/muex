@@ -55,15 +55,15 @@ var DEFAULT_CONFIG = {
   minuteRow: '{value}',
   format: 'YYYY-MM-DD',
   value: NOW.getFullYear() + '-' + (NOW.getMonth() + 1) + '-' + NOW.getDate(),
-  onSelect () {
+  onSelect() {
   },
-  onConfirm () {
+  onConfirm() {
   },
-  onClear () {
+  onClear() {
   },
-  onShow () {
+  onShow() {
   },
-  onHide () {
+  onHide() {
   },
   confirmText: 'ok',
   clearText: '',
@@ -112,7 +112,12 @@ function hideMask() {
 function DatetimePicker(config) {
   var self = this;
   self.config = {};
-  self.value = config.value || '';
+  console.log('config', config.defaultSelectedValue);
+  if (config.defaultSelectedValue && !config.value) {
+    self.value = config.defaultSelectedValue;
+  } else {
+    self.value = config.value || '';
+  }
   each(DEFAULT_CONFIG, function (key, val) {
     self.config[key] = config[key] || val;
   });
@@ -146,7 +151,7 @@ function DatetimePicker(config) {
 
 DatetimePicker.prototype = {
 
-  _show (newValueMap) {
+  _show(newValueMap) {
     var self = this;
 
     self.container.style.display = 'block';
@@ -160,7 +165,7 @@ DatetimePicker.prototype = {
       self.container.style.transform = 'translateY(0)';
     }, 0);
   },
-  show (value) {
+  show(value) {
     var self = this;
     var config = self.config;
     CURRENT_PICKER = self;
@@ -254,7 +259,7 @@ DatetimePicker.prototype = {
     config.onShow.call(self);
   },
 
-  _makeData (type, year, month) {
+  _makeData(type, year, month) {
     var config = this.config;
     var valueMap = this.valueMap;
     var list = TYPE_MAP[type];
@@ -310,7 +315,7 @@ DatetimePicker.prototype = {
   },
 
   // after year change
-  _setMonthScroller (currentValue, month) {
+  _setMonthScroller(currentValue, month) {
     const self = this;
     this.monthScroller.destroy();
     var div = self.find('[data-role=month]');
@@ -322,7 +327,7 @@ DatetimePicker.prototype = {
     });
   },
 
-  _setDayScroller (year, month, day) {
+  _setDayScroller(year, month, day) {
     var self = this;
     var maxDay = getMaxDay(year, month);
     if (day > maxDay) {
@@ -335,11 +340,11 @@ DatetimePicker.prototype = {
     });
   },
 
-  find (selector) {
+  find(selector) {
     return this.container.querySelector(selector);
   },
 
-  hide () {
+  hide() {
     var self = this;
     self.container.style.removeProperty('transform');
     self.container.style.removeProperty('-webkit-transform');
@@ -353,11 +358,11 @@ DatetimePicker.prototype = {
     self.config.onHide.call(self);
   },
 
-  select (type, value) {
+  select(type, value) {
     this[type + 'Scroller'].select(value, false);
   },
 
-  destroy () {
+  destroy() {
     var self = this;
     this.trigger.removeEventListener('click', this.triggerHandler, false);
     removeElement(MASK);
@@ -366,7 +371,7 @@ DatetimePicker.prototype = {
     self.container = null;
   },
 
-  getValue () {
+  getValue() {
     var self = this;
     var config = self.config;
 
@@ -391,7 +396,7 @@ DatetimePicker.prototype = {
     return value;
   },
 
-  confirm () {
+  confirm() {
     var self = this;
     var value = self.getValue();
     this.value = value;
@@ -403,7 +408,7 @@ DatetimePicker.prototype = {
     self.hide();
   },
 
-  clear () {
+  clear() {
     var self = this;
     var value = self.getValue();
 

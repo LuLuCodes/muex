@@ -18,8 +18,12 @@
       <m-button @click.native="reRender" type="primary">2016-11-11 ~ 2018-10-11</m-button>
     </div>
 
-    <group title="format: YYYY-MM-DD HH:mm">
-      <datetime v-model="value2" format="YYYY-MM-DD HH:mm" @on-change="change" title="start time"></datetime>
+    <group title="format: YYYY-MM-DD HH:mm && defaultSelectedValue :2017-11-21 00:00">
+      <datetime v-model="value2"
+                format="YYYY-MM-DD HH:mm"
+                @on-change="change"
+                defaultSelectedValue="2017-11-21 00:00"
+                title="start time"></datetime>
     </group>
 
     <group title="Placeholder">

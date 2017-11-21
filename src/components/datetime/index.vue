@@ -2,7 +2,8 @@
   <a class="m-datetime weui-cell weui-cell_access" href="javascript:">
     <slot>
       <div>
-        <p :style="{width: $parent.labelWidth, textAlign: $parent.labelAlign, marginRight: $parent.labelMarginRight}" v-html="title"></p>
+        <p :style="{width: $parent.labelWidth, textAlign: $parent.labelAlign, marginRight: $parent.labelMarginRight}"
+           v-html="title"></p>
         <inline-desc v-if="inlineDesc">{{inlineDesc}}</inline-desc>
       </div>
       <div class="weui-cell__ft m-cell-primary m-datetime-value" :style="{textAlign: valueTextAlign}">
@@ -36,6 +37,10 @@
       title: {
         type: String,
         required: true
+      },
+      defaultSelectedValue: {
+        type: String,
+        default: ''
       },
       value: {
         type: String,
@@ -91,18 +96,18 @@
       valueTextAlign: String,
       displayFormat: Function
     },
-    created () {
+    created() {
       this.currentValue = this.value;
       this.handleChangeEvent = true;
     },
-    data () {
+    data() {
       return {
         currentValue: null,
         valid: true,
         errors: {}
       };
     },
-    mounted () {
+    mounted() {
       const uuid = this.uuid;
       this.$nextTick(() => {
         this.$el.setAttribute('id', `m-datetime-${uuid}`);
@@ -110,14 +115,14 @@
       });
     },
     computed: {
-      _value () {
+      _value() {
         if (!this.currentValue) {
           return this.placeholder || '';
         } else {
           return this.displayFormat ? this.displayFormat(this.currentValue) : this.currentValue;
         }
       },
-      pickerOptions () {
+      pickerOptions() {
         const _this = this;
         const options = {
           trigger: '#m-datetime-' + this.uuid,
@@ -136,13 +141,14 @@
           maxHour: this.maxHour,
           startDate: this.startDate,
           endDate: this.endDate,
-          onConfirm (value) {
+          defaultSelectedValue: this.defaultSelectedValue,
+          onConfirm(value) {
             _this.currentValue = value;
           },
-          onClear (value) {
+          onClear(value) {
             _this.$emit('on-clear', value);
           },
-          onHide () {
+          onHide() {
             _this.validate();
           }
         };
@@ -154,19 +160,19 @@
         }
         return options;
       },
-      firstError () {
+      firstError() {
         let key = Object.keys(this.errors)[0];
         return this.errors[key];
       }
     },
     methods: {
-      render () {
+      render() {
         this.$nextTick(() => {
           this.picker && this.picker.destroy();
           this.picker = new Picker(this.pickerOptions);
         });
       },
-      validate () {
+      validate() {
         if (!this.currentValue && this.required) {
           this.valid = false;
           this.errors.required = '必填';
@@ -177,31 +183,31 @@
       }
     },
     watch: {
-      currentValue (val) {
+      currentValue(val) {
         this.$emit('on-change', val);
         this.$emit('input', val);
         this.validate();
       },
-      startDate () {
+      startDate() {
         this.render();
       },
-      endDate () {
+      endDate() {
         this.render();
       },
-      format (val) {
+      format(val) {
         if (this.currentValue) {
           this.currentValue = format(this.currentValue, val);
         }
         this.render();
       },
-      value (val) {
+      value(val) {
         if (this.currentValue !== val) {
           this.currentValue = val;
           this.render();
         }
       }
     },
-    beforeDestroy () {
+    beforeDestroy() {
       this.picker.destroy();
     }
   };
@@ -233,9 +239,8 @@
     margin: 0 auto;
     width: 100%;
     z-index: 3;
-    background-image:
-      linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.6)),
-      linear-gradient(to top, rgba(255,255,255,0.95), rgba(255,255,255,0.6));
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6)),
+    linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.6));
     background-position: top, bottom;
     background-size: 100% 102px;
     background-repeat: no-repeat;
@@ -252,9 +257,8 @@
     position: absolute;
     left: 0;
     z-index: 3;
-    background-image:
-      linear-gradient(to bottom, #d0d0d0, #d0d0d0, transparent, transparent),
-      linear-gradient(to top, #d0d0d0, #d0d0d0, transparent, transparent);
+    background-image: linear-gradient(to bottom, #d0d0d0, #d0d0d0, transparent, transparent),
+    linear-gradient(to top, #d0d0d0, #d0d0d0, transparent, transparent);
     background-position: top, bottom;
     background-size: 100% 1px;
     background-repeat: no-repeat;
@@ -329,57 +333,108 @@
   .m-datetime .m-input-icon {
     float: right;
   }
+
   .m-cell-primary {
     flex: 1;
   }
 
-  @media screen and (min-width:320px) {
-    .scroller-component{ height: 175px;}
+  @media screen and (min-width: 320px) {
+    .scroller-component {
+      height: 175px;
+    }
+
     .scroller-item {
       height: 25px;
       line-height: 25px;
     }
-    .scroller-mask{ background-size: 100% 75px;}
-    .scroller-indicator{ height: 25px; top: 75px;}
+
+    .scroller-mask {
+      background-size: 100% 75px;
+    }
+
+    .scroller-indicator {
+      height: 25px;
+      top: 75px;
+    }
   }
 
-  @media screen and (min-width:360px) {
-    .scroller-component{ height: 182px;}
+  @media screen and (min-width: 360px) {
+    .scroller-component {
+      height: 182px;
+    }
+
     .scroller-item {
       height: 26px;
       line-height: 26px;
     }
-    .scroller-mask{ background-size: 100% 78px;}
-    .scroller-indicator{ height: 26px; top: 78px;}
+
+    .scroller-mask {
+      background-size: 100% 78px;
+    }
+
+    .scroller-indicator {
+      height: 26px;
+      top: 78px;
+    }
   }
 
-  @media screen and (min-width:375px) {
-    .scroller-component{ height: 203px;}
+  @media screen and (min-width: 375px) {
+    .scroller-component {
+      height: 203px;
+    }
+
     .scroller-item {
       height: 29px;
       line-height: 29px;
     }
-    .scroller-mask{ background-size: 100% 87px;}
-    .scroller-indicator{ height: 29px; top: 87px;}
+
+    .scroller-mask {
+      background-size: 100% 87px;
+    }
+
+    .scroller-indicator {
+      height: 29px;
+      top: 87px;
+    }
   }
 
-  @media screen and (min-width:414px) {
-    .scroller-component{ height: 238px;}
+  @media screen and (min-width: 414px) {
+    .scroller-component {
+      height: 238px;
+    }
+
     .scroller-item {
       height: 34px;
       line-height: 34px;
     }
-    .scroller-mask{ background-size: 100% 102px;}
-    .scroller-indicator{ height: 34px; top: 102px;}
+
+    .scroller-mask {
+      background-size: 100% 102px;
+    }
+
+    .scroller-indicator {
+      height: 34px;
+      top: 102px;
+    }
   }
 
-  @media screen and (min-width:480px) {
-    .scroller-component{ height: 273px;}
+  @media screen and (min-width: 480px) {
+    .scroller-component {
+      height: 273px;
+    }
+
     .scroller-item {
       height: 39px;
       line-height: 39px;
     }
-    .scroller-mask{ background-size: 100% 117px;}
-    .scroller-indicator{ height: 39px; top: 117px;}
+
+    .scroller-mask {
+      background-size: 100% 117px;
+    }
+
+    .scroller-indicator {
+      height: 39px;
+      top: 117px;
+    }
   }
 </style>
